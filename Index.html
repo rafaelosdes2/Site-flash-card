@@ -1,4 +1,4 @@
-import { useState } from "react"; import { Card, CardContent } from "@/components/ui/card"; import { Button } from "@/components/ui/button"; import { Input } from "@/components/ui/input"; import { motion } from "framer-motion";
+import { useState } from "react"; import { Card, CardContent } from "@/components/ui/card"; import { Button } from "@/components/ui/button"; import { motion } from "framer-motion";
 
 const flashcards = [ { question: "What year was Pepsi founded?", answer: "1893 (originally as Brad's Drink)" }, { question: "What is the main color of the Pepsi logo?", answer: "Blue" }, { question: "Which company is Pepsi's biggest competitor?", answer: "Coca-Cola" }, { question: "What is Pepsi Max?", answer: "A sugar-free version of Pepsi" }, ];
 
@@ -6,16 +6,42 @@ export default function PepsiFlashcards() { const [index, setIndex] = useState(0
 
 const nextCard = () => { setShowAnswer(false); setIndex((prev) => (prev + 1) % flashcards.length); };
 
-return ( <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-700 to-blue-400 p-6 text-white"> <h1 className="text-4xl font-bold mb-6">Pepsi Flashcards</h1>
+return ( <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#004B93] to-[#007AC1] p-6 text-white font-sans"> <h1 className="text-5xl font-extrabold mb-8 drop-shadow-lg">🥤 Pepsi Flashcards</h1>
 
 <motion.div
     className="w-full max-w-md"
-    initial={{ scale: 0.9, opacity: 0 }}
-    animate={{ scale: 1, opacity: 1 }}
-    transition={{ duration: 0.4 }}
+    initial={{ y: 30, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ duration: 0.5 }}
   >
-    <Card className="bg-white text-black rounded-2xl shadow-lg p-6">
-      <CardContent>
-        <h2 className="text-xl font-semibold text-center">
+    <Card className="bg-white text-black rounded-2xl shadow-2xl p-8 border-4 border-blue-600">
+      <CardContent className="flex items-center justify-center min-h-[150px]">
+        <h2 className="text-2xl font-semibold text-center">
           {showAnswer ? flashcards[index].answer : flashcards[index].question}
-        </h2
+        </h2>
+      </CardContent>
+    </Card>
+  </motion.div>
+
+  <div className="flex gap-6 mt-8">
+    <Button
+      onClick={() => setShowAnswer(!showAnswer)}
+      className="bg-[#002B5B] hover:bg-[#001F47] text-white px-6 py-2 rounded-xl shadow-md"
+    >
+      {showAnswer ? "Hide Answer" : "Show Answer"}
+    </Button>
+    <Button
+      onClick={nextCard}
+      className="bg-white text-[#002B5B] hover:bg-gray-200 px-6 py-2 rounded-xl shadow-md border border-blue-700"
+    >
+      Next
+    </Button>
+  </div>
+
+  <footer className="mt-12 text-sm text-white/80">
+    C
+  </footer>
+</div>
+
+); }
+

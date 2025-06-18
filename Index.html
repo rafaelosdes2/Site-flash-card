@@ -1,0 +1,21 @@
+import { useState } from "react"; import { Card, CardContent } from "@/components/ui/card"; import { Button } from "@/components/ui/button"; import { Input } from "@/components/ui/input"; import { motion } from "framer-motion";
+
+const flashcards = [ { question: "What year was Pepsi founded?", answer: "1893 (originally as Brad's Drink)" }, { question: "What is the main color of the Pepsi logo?", answer: "Blue" }, { question: "Which company is Pepsi's biggest competitor?", answer: "Coca-Cola" }, { question: "What is Pepsi Max?", answer: "A sugar-free version of Pepsi" }, ];
+
+export default function PepsiFlashcards() { const [index, setIndex] = useState(0); const [showAnswer, setShowAnswer] = useState(false);
+
+const nextCard = () => { setShowAnswer(false); setIndex((prev) => (prev + 1) % flashcards.length); };
+
+return ( <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-700 to-blue-400 p-6 text-white"> <h1 className="text-4xl font-bold mb-6">Pepsi Flashcards</h1>
+
+<motion.div
+    className="w-full max-w-md"
+    initial={{ scale: 0.9, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    transition={{ duration: 0.4 }}
+  >
+    <Card className="bg-white text-black rounded-2xl shadow-lg p-6">
+      <CardContent>
+        <h2 className="text-xl font-semibold text-center">
+          {showAnswer ? flashcards[index].answer : flashcards[index].question}
+        </h2
